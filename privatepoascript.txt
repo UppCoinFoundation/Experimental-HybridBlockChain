@@ -1,0 +1,16 @@
+#!/bin/bash
+echo remove any oldblockchain databases
+rm -rf /Users/User1/Library/Ethereum/geth/lightchaindata/*
+rm -rf /Users/User1/Library/Ethereum/geth/chaindata/*
+rm -rf /Users/User1/.ethereum_privatepoa/geth/lightchaindata/*
+rm -rf /Users/User1/.ethereum_privatepoa/geth/chaindata/*
+
+echo starting GenesisPOA block
+/Users/User1/go-ethereum/build/bin/geth --identity "Princess" --rpc --rpccorsdomain "http://localhost:8000" --rpccorsdomain "http://localhost:3000" --rpccorsdomain "*" --rpcport "8545"  --ipcpath /Users/User1/Library/Ethereum/geth.ipc --datadir ~/.ethereum_privatepoa --port "30303" --rpcapi "db,eth,net,web3" --bootnodes "enode://57b43f702bc5a03134afe13322a63ba3cf55db4ea8e6dffd380e401aec6889febfb0fc6e602b0a9ba02e7437bda936445be590d2078786ec8e1c6961a341dba7@127.0.0.1:30303" --networkid 1988 init /Users/User1/Library/Ethereum/PrincessPOA.json
+
+echo starting GenesisPOA console
+/Users/User1/go-ethereum/build/bin/geth --identity "Princess" --rpc --mine -minerthreads 1 --rpccorsdomain "http://localhost:8000" --rpccorsdomain "http://localhost:3000" --rpccorsdomain "*" --rpcport "8545"  --ipcpath /Users/User1/Library/Ethereum/geth.ipc --datadir ~/.ethereum_privatepoa --port "30303" --rpcapi "db,eth,net,web3" --bootnodes "enode://cd8399932031addbfe31b23492fcd32e3ec3d10a7f53b3483a7b888010a72259364d65f8f470206552972b1c7f401650b24a3dff4872b788daf2615df505b4dc@127.0.0.1:30301" --networkid 1988 --unlock 0 console 
+
+
+
+
